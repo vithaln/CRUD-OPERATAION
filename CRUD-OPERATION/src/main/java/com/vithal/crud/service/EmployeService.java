@@ -2,21 +2,22 @@ package com.vithal.crud.service;
 
 import java.util.List;
 
+import com.vithal.crud.Dto.EmployeeDto;
 import com.vithal.crud.entities.Employee;
 
 public interface EmployeService {
 
 	//create employees
-	Employee createEmployee(Employee employee);
+	EmployeeDto createEmployee(EmployeeDto employeedto);
 	
 	//get AllEmployees
-	List<Employee> getAllEmployees();
+	List<EmployeeDto> getAllEmployees();
 	
 	//get single employee
-	Employee getSingleEmployee(String empId);
+	EmployeeDto getSingleEmployee(String empId);
 	
 	//update employee by Id
-	Employee updateEmployee(Employee employee, String empId);
+	EmployeeDto updateEmployee(EmployeeDto employeedto, String empId);
 	
 	//delete employees
 	void deleteEmployee(String empId);

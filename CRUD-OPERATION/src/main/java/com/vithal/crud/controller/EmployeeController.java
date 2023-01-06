@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vithal.crud.Dto.EmployeeDto;
 import com.vithal.crud.entities.Employee;
 import com.vithal.crud.exceptions.payload.DeleteResponse;
 import com.vithal.crud.service.EmployeService;
@@ -31,42 +32,42 @@ public class EmployeeController {
 //Create the Employee by using this API.
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 //@PostMapping("/")
-	public ResponseEntity<Employee> saveEmployees(@RequestBody Employee employee) {
-		log.info("Create method is called these are the Data: {} ", employee);
-		Employee createEmployee = employeService.createEmployee(employee);
+	public ResponseEntity<EmployeeDto> saveEmployees(@RequestBody EmployeeDto employeedto) {
+		log.info("Create method is called these are the Data: {} ", employeedto);
+		EmployeeDto createEmployee = employeService.createEmployee(employeedto);
 		log.info("Saved the Data in DATABASE : {} ", createEmployee);
-		return new ResponseEntity<Employee>(createEmployee, HttpStatus.CREATED);
+		return new ResponseEntity<EmployeeDto>(createEmployee, HttpStatus.CREATED);
 
 	}
 
 //get All employees through this API.
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 //@GetMapping("/")
-	public ResponseEntity<List<Employee>> fetchAllEmployees() {
+	public ResponseEntity<List<EmployeeDto>> fetchAllEmployees() {
 		log.info("Fetching Employee method got callled! ");
-		List<Employee> allEmployees = employeService.getAllEmployees();
+		List<EmployeeDto> allEmployees = employeService.getAllEmployees();
 		log.info("Fetched Data from DATABASE these are : {} ", allEmployees);
-		return new ResponseEntity<List<Employee>>(allEmployees, HttpStatus.OK);
+		return new ResponseEntity<List<EmployeeDto>>(allEmployees, HttpStatus.OK);
 
 	}
 
 //Fetch single Employee by using employee Id.
 	@RequestMapping(value = "/{empId}", method = RequestMethod.GET)
 //@GetMapping("/{empId}")
-	public ResponseEntity<Employee> fetchSingleEmployee(@PathVariable String empId) {
+	public ResponseEntity<EmployeeDto> fetchSingleEmployee(@PathVariable String empId) {
 		log.info("Fetch Single employee method called by using this Id: {} ", empId);
-		Employee singleEmployee = employeService.getSingleEmployee(empId);
+		EmployeeDto singleEmployee = employeService.getSingleEmployee(empId);
 		log.info("this is the single employee details: {} ", singleEmployee);
-		return new ResponseEntity<Employee>(singleEmployee, HttpStatus.OK);
+		return new ResponseEntity<EmployeeDto>(singleEmployee, HttpStatus.OK);
 	}
 
 //update employee by using employee Id
 	@RequestMapping(value = "/{empId}", method = RequestMethod.PUT)
-	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable String empId) {
+	public ResponseEntity<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeedto, @PathVariable String empId) {
 		log.info("update employee method called by using this Id: {} ", empId);
-		Employee updateEmployee = employeService.updateEmployee(employee, empId);
+		EmployeeDto updateEmployee = employeService.updateEmployee(employeedto, empId);
 		log.info("these are the updated employee details: {} ", updateEmployee);
-		return new ResponseEntity<Employee>(updateEmployee, HttpStatus.OK);
+		return new ResponseEntity<EmployeeDto>(updateEmployee, HttpStatus.OK);
 	}
 
 //delete employee by using employee Id.
