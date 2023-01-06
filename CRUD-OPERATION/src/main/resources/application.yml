@@ -1,0 +1,17 @@
+server:
+  port: 8001
+  
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/crudapp
+    password: Vithal@7757
+  jpa:
+    properties:
+      hibernate:
+        dielect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+
