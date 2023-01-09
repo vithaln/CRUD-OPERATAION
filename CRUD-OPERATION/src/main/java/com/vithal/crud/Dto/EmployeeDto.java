@@ -38,7 +38,9 @@ public class EmployeeDto {
 
 	@Column(nullable = false)
 	@NotBlank(message = "employee Email must be mandtatory!..")
-	@Email(message = "Please enter correct emailId!, this is Invalid email")
+	@Email(message = "Please enter correct emailId!, this is Invalid email",regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}"
+           )
+	// flags = Pattern.Flag.CASE_INSENSITIVE -> if we use it it can valid Capital letters as well.
 	private String empEmail;
 	
 	@Column(nullable = false, length = 40)
@@ -79,7 +81,7 @@ public class EmployeeDto {
 	@Length(max = 10,min = 3, message =  "Employee pincode must be start at least 3 character to 10.")
 	private String empPincode;
 	
-	@Column(nullable = false, length = 40)
+	@Column(nullable = false, length = 100)
 	@NotBlank(message = "employee about must be mandtatory!..")
 	@Length(max = 100,min = 3, message =  "Employee about must be start at least 3 character to 100.")
 	private String empAbout;
