@@ -18,6 +18,7 @@ import com.vithal.crud.entities.Employee;
 import com.vithal.crud.exceptions.payload.DeleteResponse;
 import com.vithal.crud.service.EmployeService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -32,7 +33,7 @@ public class EmployeeController {
 //Create the Employee by using this API.
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 //@PostMapping("/")
-	public ResponseEntity<EmployeeDto> saveEmployees(@RequestBody EmployeeDto employeedto) {
+	public ResponseEntity<EmployeeDto> saveEmployees(@Valid @RequestBody EmployeeDto employeedto) {
 		log.info("Create method is called these are the Data: {} ", employeedto);
 		EmployeeDto createEmployee = employeService.createEmployee(employeedto);
 		log.info("Saved the Data in DATABASE : {} ", createEmployee);
