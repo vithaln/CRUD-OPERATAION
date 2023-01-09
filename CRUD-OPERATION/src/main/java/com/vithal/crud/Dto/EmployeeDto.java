@@ -36,7 +36,7 @@ public class EmployeeDto {
 	private String empLastname;
 	
 
-	@Column(nullable = false)
+	@Column(nullable = false,unique = true)
 	@NotBlank(message = "employee Email must be mandtatory!..")
 	@Email(message = "Please enter correct emailId!, this is Invalid email",regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}"
            )

@@ -2,7 +2,6 @@ package com.vithal.crud.serviceIml;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -27,12 +26,18 @@ public class EmployeeImplementation implements EmployeService {
 	private ModelMapper mapper;
 	
 	@Override
-	public EmployeeDto createEmployee(EmployeeDto employeedto) {
+	public EmployeeDto createEmployee(EmployeeDto employeedto){
+		
+if(employeeRepository.findByempEmail(employeedto.getEmpEmail())!=null) 	throw new RuntimeException("THIS EMAIL RECORD HAS BEEN ALREADY EXIST! "+employeedto.getEmpEmail()+" , So please try by diffrent Email ID!..");
+if(employeeRepository.findByempMobilenumber(employeedto.getEmpMobilenumber())!=null) 	throw new RuntimeException("THIS MOBILE NUMBER RECORD HAS BEEN ALREADY EXIST! "+employeedto.getEmpMobilenumber()+" , So please put diffrent mobile number!!..");
+
 		Employee employee = this.dtoToEmployee(employeedto);
 		String empId = UUID.randomUUID().toString();
 		employee.setEmpId(empId);
 		Employee employees = employeeRepository.save(employee);
 		EmployeeDto employeeToDto = this.employeeToDto(employees);
+		
+		
 		return employeeToDto;
 	}
 
