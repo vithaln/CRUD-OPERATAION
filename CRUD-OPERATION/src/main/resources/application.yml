@@ -15,3 +15,15 @@ spring:
       ddl-auto: update
     show-sql: 'true'
 
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: 14879198622-cpgjptodifml0uq0rb375qf0g449brto.apps.googleusercontent.com
+#            client-secret: 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
+
+  security:
+    user:
+      name: Vithal
+      password: Vithal@77578888
